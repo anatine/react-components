@@ -1,6 +1,8 @@
 /// <reference types="@emotion/react/types/css-prop" />
-import TimeKeeper from './components/TimeKeeperContainer'
+import './tailwind/theme.css';
+import TimePickerWithConfig from './components/TimeKeeperContainer';
 
-export default TimeKeeper
+export type { TimeInput, TimeOutput } from './helpers/types';
 
-export { TimeInput, TimeOutput } from './helpers/types'
+export const TimeKeeper = TimePickerWithConfig;
+export default TimeKeeper;

@@ -1,21 +1,29 @@
-import { Global, css } from '@emotion/react'
+import { HTMLAttributes } from 'react';
+import { twMerge } from 'tailwind-merge';
 
-import globalStyle from './styles/global'
-import style from './styles/main'
-import TopBar from './TopBar'
-import ClockWrapper from './ClockWrapper'
-import DoneButton from './DoneButton'
+import ClockWrapper from './ClockWrapper';
+import DoneButton from './DoneButton';
+import TopBar from './TopBar';
 
-export default function TimeKeeper() {
-	return (
-		<>
-			<Global styles={css(globalStyle)} />
+export default function TimeKeeper({
+  className,
+  ...props
+}: HTMLAttributes<HTMLDivElement>) {
+  return (
+    <>
+      {/* <Global styles={css(globalStyle)} /> */}
 
-			<div className="react-timekeeper" css={style}>
-				<TopBar />
-				<ClockWrapper />
-				<DoneButton />
-			</div>
-		</>
-	)
+      <div
+        className={twMerge(
+          'relative inline-flex flex-col select-none antialiased bg-base-100 rounded',
+          'react-timekeeper',
+          className
+        )}
+      >
+        <TopBar />
+        <ClockWrapper />
+        <DoneButton />
+      </div>
+    </>
+  );
 }

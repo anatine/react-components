@@ -1,6 +1,9 @@
 const { createGlobPatternsForDependencies } = require('@nx/react/tailwind');
 const { join } = require('path');
 
+const glob = createGlobPatternsForDependencies(__dirname);
+console.log('🚀 ~ file: tailwind.config.js:5 ~ glob:', glob);
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -8,10 +11,14 @@ module.exports = {
       __dirname,
       '{src,pages,components,app}/**/*!(*.stories|*.spec).{ts,tsx,html}'
     ),
-    ...createGlobPatternsForDependencies(__dirname),
+    join(
+      __dirname,
+      '../keep-time-picker/{src,pages,components,app}/**/*!(*.stories|*.spec).{ts,tsx,html}'
+    ),
+    ...glob,
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('daisyui'), require('tailwind-scrollbar')],
 };
